@@ -3,6 +3,14 @@ import os
 
 
 class PharmacyRecordParser(object):
+    '''An object of this class is responsible for parsing and input
+    pharmacy record file.
+
+    Parameters
+    ----------
+    file_path: str
+        The path to the input file.
+    '''
 
     DELIMITER = ','
     QUOTE_CHAR = '"'
@@ -13,7 +21,7 @@ class PharmacyRecordParser(object):
                 '{} is not a valid file path'.format(file_path),
             )
         self._file_handle = open(file_path, 'rU')
-        self.reader = csv.reader(
+        self._reader = csv.reader(
             self._file_handle,
             delimiter=PharmacyRecordParser.DELIMITER,
             quotechar=PharmacyRecordParser.QUOTE_CHAR,
@@ -33,7 +41,7 @@ class PharmacyRecordParser(object):
             drug_cost: str,
         ]
         '''
-        for record in self.reader:
+        for record in self._reader:
             yield record
         self.close()
 
