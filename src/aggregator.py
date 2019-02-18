@@ -49,6 +49,20 @@ class DrugInfoAggregator(object):
         )
         self.drugs[drug_name][DrugInfoAggregator.TOTAL_COST] += float(drug_cost)
 
+    def _format_number(self, number):
+        # Take care of the printout format for numbers. For numbers without
+        # fraction, we don't print any thing after the decimal point.
+
+        # Examples:
+        # 
+        # | number | printout |
+        # |.   3.0 |        3.|
+        # |    3.2 |.     3.2 |
+        int_number = int(number)
+        if number - int_number > 0:
+            return str(number)
+        return str(int_number)
+
     def output(self):
         '''This method writes the computed results to a file. The results
         are sorted by total cost and drug name, in decending and ascending
@@ -66,7 +80,9 @@ class DrugInfoAggregator(object):
                 '{},{},{}\n'.format(
                     d,
                     len(self.drugs[d][DrugInfoAggregator.PRESCRIBERS]),
-                    self.drugs[d][DrugInfoAggregator.TOTAL_COST],
+                    self._format_number(
+                        self.drugs[d][DrugInfoAggregator.TOTAL_COST],
+                    ),
                 ),
             )
         fh.close()
