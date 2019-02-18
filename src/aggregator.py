@@ -58,10 +58,9 @@ class DrugInfoAggregator(object):
         # | number | printout |
         # |.   3.0 |        3.|
         # |    3.2 |.     3.2 |
-        int_number = int(number)
-        if number - int_number > 0:
-            return str(number)
-        return str(int_number)
+        if number - int(number) > 0:
+            return number
+        return int(number)
 
     def output(self):
         '''This method writes the computed results to a file. The results
