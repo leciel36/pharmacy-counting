@@ -3,7 +3,7 @@ import os
 
 
 class PharmacyRecordParser(object):
-    '''An object of this class is responsible for parsing and input
+    '''An object of this class is responsible for parsing an input
     pharmacy record file.
 
     Parameters
