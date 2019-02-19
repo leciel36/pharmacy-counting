@@ -54,9 +54,9 @@ class DrugInfoAggregator(object):
         # fraction, we don't print any thing after the decimal point.
 
         # Examples:
-        # 
+        #
         # | number | printout |
-        # |.   3.0 |        3.|
+        # |    3.0 |        3.|
         # |    3.2 |.     3.2 |
         if number - int(number) > 0:
             return number
